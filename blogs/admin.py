@@ -1,3 +1,12 @@
 from django.contrib import admin
+from .models import BlogPost, Member
 
-# Register your models here.
+
+@admin.register(Member)
+class MemberAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ['heading', 'author', 'created_at']
