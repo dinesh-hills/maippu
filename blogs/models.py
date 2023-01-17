@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class Member(models.Model):
@@ -7,13 +8,13 @@ class Member(models.Model):
     # membership = models.CharField(max_length=1, choices=[], default='')
 
     def __str__(self) -> str:
-        return self.first_name
+        return f'{self.first_name} {self.last_name}'
 
 class BlogPost(models.Model):
     heading = models.CharField(max_length=255)
-    body = models.TextField(null=True, blank=True)
+    body = RichTextField()
     author = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='author')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.heading
+        return f'{self.heading}'
