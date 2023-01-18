@@ -4,10 +4,11 @@ COPY Pipfile Pipfile.lock ./
 RUN pip install pipenv
 RUN pipenv requirements > requirements.txt
 RUN pip install -r requirements.txt
-ENV DJANGO_SUPERUSER_USERNAME=admin
+COPY . .
+ENV DJANGO_SUPERUSER_USERNAME=myuser
 ENV DJANGO_SUPERUSER_EMAIL=admin@maippu.in
 ENV DJANGO_SUPERUSER_PASSWORD=admin
-COPY . .
+RUN ./manage.py createsuperuser --noinput
 RUN ./manage.py makemigrations
 RUN ./manage.py migrate
 EXPOSE 8000
