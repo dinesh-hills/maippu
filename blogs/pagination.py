@@ -1,9 +1,7 @@
 from rest_framework.pagination import PageNumberPagination
 
 class DefaultPagination(PageNumberPagination):
-    page_size = 3
-
-
+    page_size = 10
 
 class APIViewPaginationHandlerMixin:
     @property
